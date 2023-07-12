@@ -8,10 +8,12 @@ const potionSchema = new Schema(
             trim: true,
             required: true,
         },
-        ingredients: [{
-            type: String,
-            trim: true
-        }],
+        ingredients: [
+            {
+            type: Schema.Types.ObjectId,
+            ref:"Ingredient"
+            }
+            ],
         difficulty : {
             type: String,
             enum:["Beginner", "Intermediate", "Advanced"]

@@ -1,6 +1,7 @@
 const express = require('express');
-const User = require('../models/User.model');
 const router = express.Router();
+
+const User = require('../models/User.model');
 const bcrypt = require("bcryptjs")
 
 /* GET signup page */
@@ -10,7 +11,6 @@ router.get("/signup", (req, res) => {
 
 //POST signup page, create a new User
 router.post("/signup", async (req, res) => {
-    //TODO create a form to get the req.body
     //Makin a copy of the request body {username: "blabla", password: "123"}
     const payload = { ...req.body }
     //Deleting the password from the payload copy so we dont show it
@@ -54,6 +54,11 @@ router.post('/login', async (req, res) => {
                 //TODO set a redirecting page after logging in
                 res.redirect("/")
             }
+        }
+        else{
+            //TODO set an error message and render/redirect to another page
+            console.log("Wrong email or password");
+            res.redirect("/auth/login")
         }
     } catch (error) {
     }
