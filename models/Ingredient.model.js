@@ -8,14 +8,7 @@ const ingredientSchema = new Schema(
             trim: true,
             required: true,
         },
-        ingredients: [{
-            type: String,
-            trim: true
-        }],
-        descriptions: String,
-        effects: String,
-        creator: String,
-        img_url: String
+        descriptions: String
     },
     {
         // this second object adds extra properties: `createdAt` and `updatedAt`    
@@ -23,6 +16,6 @@ const ingredientSchema = new Schema(
     }
 );
 
-const Potion = model("Potion", potionSchema);
+const Ingredients = model("Ingredients", ingredientSchema);
 
-module.exports = Potion;
+module.exports = Ingredients;

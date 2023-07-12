@@ -12,6 +12,10 @@ const potionSchema = new Schema(
             type: String,
             trim: true
         }],
+        difficulty : {
+            type: String,
+            enum:["Beginner", "Intermediate", "Advanced"]
+        },
         descriptions: String,
         effects: String,
         creator: String,
