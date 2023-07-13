@@ -10,6 +10,8 @@ require('./db')
 const express = require('express')
 
 const app = express()
+//SESSION require here
+require('./config/session.config')(app);
 
 // ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware
 require('./config')(app)
@@ -24,8 +26,9 @@ app.locals.appTitle = `${capitalize(projectName)} created with IronLauncher`
 const indexRoutes = require('./routes/index.routes')
 app.use('/', indexRoutes)
 
-const authRoutes = require('./routes/auth.routes')
-app.use('/auth', authRoutes)
+const authRoutes = require('./routes/auth.routes');
+const { isLoggedOut } = require('./middleware/middleware');
+app.use('/auth', isLoggedOut, authRoutes)
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require('./error-handling')(app)

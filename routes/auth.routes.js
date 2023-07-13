@@ -48,9 +48,11 @@ router.post('/login', async (req, res) => {
             if (bcrypt.compareSync(currentUser.password, checkedUser.passwordHash)) {
                 //creating a copy of user
                 const loggedUser = { ...checkedUser._doc }
-                //deleting the password so it doesnt appear in front
+                //deleting the password from copy so it doesnt appear in front
                 delete loggedUser.passwordHash
-                //TODO after setting SESSION do this : req.session.currentUser = loggedUser
+                //creating a new property USER in my req.session 
+                req.session.user = loggedUser
+                console.log(req.session);
                 //TODO set a redirecting page after logging in
                 res.redirect("/")
             }
