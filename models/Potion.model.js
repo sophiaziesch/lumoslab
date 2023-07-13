@@ -1,6 +1,5 @@
 const { Schema, model } = require("mongoose");
 
-// TODO: Please make sure you edit the User model to whatever makes sense in this case
 const potionSchema = new Schema(
    {
       name: {
@@ -10,15 +9,15 @@ const potionSchema = new Schema(
       },
       ingredients: [
          {
-            type: Schema.Types.ObjectId,
-            ref: "Ingredient"
+            type : String,
+            trim: true
          }
       ],
       difficulty: {
-         type: String,
-         enum: ["Beginner", "Intermediate", "Advanced"]
+         type: String
       },
       characteristics: String,
+      time: Number,
       effects: String,
       sideEffects: String,
       inventor: String,
