@@ -18,9 +18,10 @@ const potionSchema = new Schema(
          type: String,
          enum: ["Beginner", "Intermediate", "Advanced"]
       },
-      descriptions: String,
+      characteristics: String,
       effects: String,
-      creator: String,
+      sideEffects: String,
+      inventor: String,
       img_url: String
    },
    {
