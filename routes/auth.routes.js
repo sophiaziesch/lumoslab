@@ -41,7 +41,7 @@ router.post('/login', async (req, res) => {
     try {
 
         //TODO choose either email or usernam to log in, for now email
-        const checkedUser = await User.findOne({ email: currentUser.email })
+        const checkedUser = await User.findOne({ username: currentUser.username })
         if (checkedUser) {
             //if the user exist in DB
             //use "compareSync" to compare a string with an encrypted string

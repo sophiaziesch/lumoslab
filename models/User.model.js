@@ -18,7 +18,15 @@ const userSchema = new Schema(
     passwordHash: {
       type: String,
       required: true
-    }
+    },
+    potions: [{
+      type: Schema.Types.ObjectId,
+      ref: "Potion"
+    }],
+    favorites: [{
+      type: Schema.Types.ObjectId,
+      ref: "Potion"
+    }]
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`    
