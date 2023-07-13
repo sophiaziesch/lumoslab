@@ -1,26 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title><%= appTitle %></title>
-    <link rel="stylesheet" href="/stylesheets/style.css" />
-  </head>
 
-  <body>
-    <nav>
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/auth/signup">Sign Up</a></li>
-        <li><a href="/auth/login">Login</a></li>
-        <li><a href="/profile">Profile</a></li>
-        <li><a href="/logout">Logout</a></li>
-      </ul>
-      
-    </nav>
-    <%- body %>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<title><%= appTitle %></title>
+	<link rel="stylesheet" href="/stylesheets/style.css" />
+</head>
 
-    <script src="/js/script.js"></script>
-  </body>
+<body>
+	<nav class="nav">
+		<a href="/"><img class="nav-logo" src="../images/Lumoslab_logo.png" alt="Lumoslab Logo"></a>
+		<ul>
+			<li><a href="/auth/signup">Sign Up</a></li>
+			<li><a href="/auth/login">Login</a></li>
+			<li><a href="/profile">All Potions</a></li>
+			<li><a href="#">Create Potion</a></li>
+			<li><a href="#">My Profile</a>
+				<div class="nav-dropdown">
+					<a href="#">My Potions</a>
+					<a href="#">My Favourites</a>
+					<a href="/logout">Logoout</a>
+				</div>
+			</li>
+		</ul>
+	</nav>
+
+	<%- body %>
+
+	<script src="/js/script.js"></script>
+</body>
+
 </html>
