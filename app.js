@@ -26,9 +26,29 @@ app.locals.appTitle = `${capitalize(projectName)} created with IronLauncher`
 const indexRoutes = require('./routes/index.routes')
 app.use('/', indexRoutes)
 
+
+//Auth routes only when user is logged out
 const authRoutes = require('./routes/auth.routes');
 const { isLoggedOut } = require('./middleware/middleware');
 app.use('/auth', isLoggedOut, authRoutes)
+
+//Potions routes
+const potionsRoutes = require('./routes/potions.routes');
+const Potion = require('./models/Potion.model');
+app.use('/potions', potionsRoutes)
+
+//inserting all potions from API in the databse
+const data = require("./allPotionsFromApi.json")
+const allPotionsToDatabase = async()=>{
+    try {
+        await Potion.insertMany(data)
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+allPotionsToDatabase()
+
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require('./error-handling')(app)
