@@ -22,7 +22,9 @@ router.post("/signup", async (req, res) => {
 
     try {
         const newUser = await User.create(payload)
-        //TODO set a redirecting page after signing up 
+        //TODO set a redirecting page after signing up
+        delete payload.passwordHash
+        req.session.user = payload
         res.redirect('/')
     } catch (error) {
         console.log(error);
@@ -38,6 +40,8 @@ router.get("/login", (req, res) => {
 router.post('/login', async (req, res) => {
     //TODO create a form to get the req.body
     const currentUser = req.body
+    const errorMessage = "Unknown user or password"
+
     try {
 
         //TODO choose either email or usernam to log in, for now email
@@ -54,13 +58,13 @@ router.post('/login', async (req, res) => {
                 req.session.user = loggedUser
                 console.log(req.session);
                 //TODO set a redirecting page after logging in
-                res.redirect("/")
+                res.redirect('/')
             }
+            res.render("auth/login", { username: currentUser.username, errorMessage })
         }
-        else{
-            //TODO set an error message and render/redirect to another page
+        else {
             console.log("Wrong email or password");
-            res.redirect("/auth/login")
+            res.render("auth/login", { username: currentUser.username, errorMessage })
         }
     } catch (error) {
     }
