@@ -9,6 +9,8 @@ router.get("/signup", (req, res) => {
     res.render("auth/signup")
 })
 
+//route already set in app.js "/auth--"
+
 //POST signup page, create a new User
 router.post("/signup", async (req, res) => {
     //Makin a copy of the request body {username: "blabla", password: "123"}
@@ -69,10 +71,5 @@ router.post('/login', async (req, res) => {
     } catch (error) {
     }
 })
-
-
-
-
-
 
 module.exports = router;
