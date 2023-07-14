@@ -24,7 +24,6 @@ router.post("/signup", async (req, res) => {
 
     try {
         const newUser = await User.create(payload)
-        //TODO set a redirecting page after signing up
         delete payload.passwordHash
         req.session.user = payload
         res.redirect('/')
@@ -40,13 +39,10 @@ router.get("/login", (req, res) => {
 
 //POST login page
 router.post('/login', async (req, res) => {
-    //TODO create a form to get the req.body
     const currentUser = req.body
     const errorMessage = "Unknown user or password"
 
     try {
-
-        //TODO choose either email or usernam to log in, for now email
         const checkedUser = await User.findOne({ username: currentUser.username })
         if (checkedUser) {
             //if the user exist in DB
@@ -59,7 +55,6 @@ router.post('/login', async (req, res) => {
                 //creating a new property USER in my req.session 
                 req.session.user = loggedUser
                 console.log(req.session);
-                //TODO set a redirecting page after logging in
                 res.redirect('/')
             }
             res.render("auth/login", { username: currentUser.username, errorMessage })

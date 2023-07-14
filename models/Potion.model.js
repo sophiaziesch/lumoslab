@@ -21,7 +21,10 @@ const potionSchema = new Schema(
       effects: String,
       sideEffects: String,
       inventor: String,
-      img_url: String
+      img_url: {
+         type : String,
+         default: "/images/default_pot.jpg"
+      }
    },
    {
       // this second object adds extra properties: `createdAt` and `updatedAt`    
