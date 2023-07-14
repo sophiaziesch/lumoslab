@@ -44,7 +44,7 @@ const allPotionsToDatabase = async()=>{
     try {
         await Potion.insertMany(data)
     } catch (error) {
-        console.error(error)
+        console.error("boom")
     }
 }
 allPotionsToDatabase()
