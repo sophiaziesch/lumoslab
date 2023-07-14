@@ -97,7 +97,8 @@ router.post("/potion/:nameOfPotion/update", isLoggedIn, uploader.single("img_url
 router.get("/potion/:nameOfPotion/delete", isLoggedIn, async(req, res)=>{
     const potionName = req.params.nameOfPotion
     try {
-
+        await Potion.findOneAndDelete({name : potionName})
+        res.redirect("/potions/my-potions")
     } catch (error) {
         console.error(error)
     }
