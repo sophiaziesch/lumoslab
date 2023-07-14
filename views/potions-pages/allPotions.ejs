@@ -11,6 +11,6 @@
 <!-- Just a test to see if all potions is taken from the database, erase it after -->
 <ul>
   <% allPotions.forEach(potion=> { %>
-  <li><%- potion.name %></li>
+    <li> <a href="/potions/potion/<%- potion.name  %>"><%- potion.name  %></a></li>
   <% }) %>
 </ul>

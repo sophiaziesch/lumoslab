@@ -19,11 +19,12 @@ router.get('/', async (req, res) => {
 })
 
 //GET ONE potion page
-router.get('/potion/:potionId', async (req, res) => {
-    const potionId = req.params.potionId
+router.get('/potion/:potionName', async (req, res) => {
+    const potionName = req.params.potionName
+    const currentUser = req.session.user
     try {
-        const currentPotion = await Potion.findById(potionId)
-        res.render("potions-pages/potion", { potion: currentPotion })
+        const currentPotion = await Potion.findOne({name : potionName})
+        res.render("potions-pages/potion", { potion: currentPotion, user : currentUser })
     } catch (error) {
         console.error(error)
     }
@@ -58,11 +59,33 @@ router.post('/create', uploader.single("img_url"), async (req, res) => {
 })
 
 //GET MyPotion page
-router.get('/my-potions', async(req, res)=>{
+router.get('/my-potions', isLoggedIn, async(req, res)=>{
     const currentUsername = req.session.user.username
 try {
     const myPotions = await User.findOne({username : currentUsername}).populate("potions")
     res.render('potions-pages/myPotions', {myPotions : myPotions.potions})
+} catch (error) {
+    console.error(error)
+}
+})
+
+//GET updating my potion
+router.get("/my-potions/:nameOfPotion/update", isLoggedIn, async(req, res)=>{
+    const potionName = req.params.nameOfPotion
+    try {
+        const myCurrentPotion = await Potion.findOne({name : potionName})
+        res.redirect(`/potions/potion/${potionName}`)
+    } catch (error) {
+        console.error(error)
+    }
+})
+
+//GET favorite potions page
+router.get('/my-favorites', isLoggedIn, async(req, res)=>{
+    const currentUsername = req.session.user.username
+try {
+    const myFavorites = await User.findOne({username : currentUsername}).populate("favorites")
+    res.render('potions-pages/myFavorites', {myFavorites : myFavorites.potions})
 } catch (error) {
     console.error(error)
 }

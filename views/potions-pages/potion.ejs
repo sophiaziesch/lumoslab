@@ -12,6 +12,11 @@
     }
 -->
 
+<!-- /!\ Shows the UPDATE and DELETE button ONLY if the user is the inventor ! keep this part, juste style it -->
+<% if ( user && user.username === potion.inventor) { %>
+ <a href="/potions/my-potions/<%- potion.name %>"><button>Update</button></a>
+ <a href="/potions/my-potions/delete-<%- potion.name %>"><button>Delete</button></a>
+<% } %>
 
 <h2><% potion.name %></h2>
 <!-- TODO putting inline style just to see what it looks like after creating, styling will be done by Sophia -->
