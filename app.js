@@ -46,7 +46,6 @@ const allPotionsToDatabase = async()=>{
         console.error(error)
     }
 }
-
 allPotionsToDatabase()
 
 
