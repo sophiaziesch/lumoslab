@@ -52,7 +52,7 @@ router.post('/create', uploader.single("img_url"), async (req, res) => {
         const myPotions = await Potion.find({inventor : currentInventor})
         //update the current user potions inventory
         await User.findOneAndUpdate({username : currentInventor},{potions : myPotions} )
-        res.redirect(`/potions/potion/${newPotion._id}`)
+        res.redirect(`/potions/potion/${newPotion.name}`)
     } catch (error) {
         console.error(error);
     }
@@ -69,12 +69,35 @@ try {
 }
 })
 
-//GET updating my potion
-router.get("/my-potions/:nameOfPotion/update", isLoggedIn, async(req, res)=>{
+//GET go to Update page my potion
+router.get("/potion/:nameOfPotion/update", isLoggedIn, async(req, res)=>{
     const potionName = req.params.nameOfPotion
     try {
         const myCurrentPotion = await Potion.findOne({name : potionName})
+        console.log(myCurrentPotion);
+        res.render("potions-pages/update", {potion : myCurrentPotion})
+    } catch (error) {
+        console.error(error)
+    }
+})
+
+//TODO POST updating the current potion
+router.post("/potion/:nameOfPotion/update", isLoggedIn, uploader.single("img_url"), async(req, res)=>{
+    const potionName = req.params.nameOfPotion
+    console.log(req.body);
+    try {
+        const myCurrentPotion = await Potion.findOneAndUpdate({name : potionName}, req.body)
         res.redirect(`/potions/potion/${potionName}`)
+    } catch (error) {
+        console.error(error)
+    }
+})
+
+//TODO GET Delete my potion
+router.get("/potion/:nameOfPotion/delete", isLoggedIn, async(req, res)=>{
+    const potionName = req.params.nameOfPotion
+    try {
+
     } catch (error) {
         console.error(error)
     }
