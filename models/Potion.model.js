@@ -23,7 +23,7 @@ const potionSchema = new Schema(
       inventor: String,
       img_url: {
          type : String,
-         default: "/images/default_pot.jpg"
+         default: "/images/default_pot.png"
       }
    },
    {

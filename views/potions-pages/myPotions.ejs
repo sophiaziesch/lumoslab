@@ -1,0 +1,8 @@
+<h2>My potions</h2>
+
+<ul>
+    <% myPotions.forEach(potion => { %>
+     <li><%- potion.name  %></li>
+     <li><img src="<%- potion.img_url  %>" alt="" style="height : 200px"></li>
+    <% }) %>
+</ul>
