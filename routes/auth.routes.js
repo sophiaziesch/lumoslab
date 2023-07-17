@@ -4,9 +4,16 @@ const router = express.Router();
 const User = require('../models/User.model');
 const bcrypt = require("bcryptjs")
 
+let loggedIn = false
+
 /* GET signup page */
 router.get("/signup", (req, res) => {
-    res.render("auth/signup")
+    if (req.session.user) {
+        loggedIn = true
+    } else {
+        loggedIn = false
+    }
+    res.render("auth/signup", { loggedIn })
 })
 
 //route already set in app.js "/auth--"
@@ -34,7 +41,7 @@ router.post("/signup", async (req, res) => {
 
 //GET login page
 router.get("/login", (req, res) => {
-    res.render("auth/login")
+    res.render("auth/login", { loggedIn })
 })
 
 //POST login page
@@ -57,11 +64,11 @@ router.post('/login', async (req, res) => {
                 console.log(req.session);
                 res.redirect('/')
             }
-            res.render("auth/login", { username: currentUser.username, errorMessage })
+            res.render("auth/login", { username: currentUser.username, errorMessage, loggedIn })
         }
         else {
             console.log("Wrong email or password");
-            res.render("auth/login", { username: currentUser.username, errorMessage })
+            res.render("auth/login", { username: currentUser.username, errorMessage, loggedIn })
         }
     } catch (error) {
     }
