@@ -84,16 +84,17 @@ router.get("/potion/:nameOfPotion/update", isLoggedIn, async(req, res)=>{
 //TODO POST updating the current potion
 router.post("/potion/:nameOfPotion/update", isLoggedIn, uploader.single("img_url"), async(req, res)=>{
     const potionName = req.params.nameOfPotion
-    console.log(req.body);
     try {
-        const myCurrentPotion = await Potion.findOneAndUpdate({name : potionName}, req.body)
-        res.redirect(`/potions/potion/${potionName}`)
+        const currentPotion = await Potion.findOne({name : potionName})
+        const myCurrentUpdated = await Potion.findByIdAndUpdate(currentPotion._id, req.body)
+        const myUpdatedPotion = await Potion.findById(currentPotion._id)
+        res.redirect(`/potions/potion/${myUpdatedPotion.name}`)
     } catch (error) {
         console.error(error)
     }
 })
 
-//TODO GET Delete my potion
+//GET Delete my potion
 router.get("/potion/:nameOfPotion/delete", isLoggedIn, async(req, res)=>{
     const potionName = req.params.nameOfPotion
     try {
