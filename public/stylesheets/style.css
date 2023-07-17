@@ -80,9 +80,8 @@ table {
 	color: white;
 }
 
-.nav-dropdown {
-	/*display: none; */
-	display: flex;
+#nav-dropdown {
+	display: none;
 	flex-direction: column;
 }
 
@@ -102,4 +101,25 @@ table {
 
 .flex-index input {
 	width: 700px;
+}
+
+.search-index {
+	height: 2.6rem;
+	width: 800px;
+	margin: 20px;
+	border-radius: 50px;
+}
+
+.search-index::placeholder {
+	text-align: center;
+}
+
+.button {
+	height: 2.6rem;
+	width: 200px;
+	border-radius: 50px;
+	background-color: #00c1c1;
+	color: white;
+	font-size: 1.2rem;
+	font-weight: 500;
 }
