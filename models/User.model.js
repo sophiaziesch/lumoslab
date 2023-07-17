@@ -19,7 +19,11 @@ const userSchema = new Schema(
     favorites: [{
       type: Schema.Types.ObjectId,
       ref: "Potion"
-    }]
+    }],
+    img_url: {
+      type: String,
+      default: "/images/default_sorcerer.png"
+    }
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`    
