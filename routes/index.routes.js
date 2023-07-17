@@ -5,21 +5,29 @@ const router = express.Router();
 
 const uploader = require('../config/cloudinary.config.js');
 
+let loggedIn
+
 /* GET home page */
 router.get("/", (req, res, next) => {
-  res.render("index", {user : req.session.user});
+  if(req.session.user){
+loggedIn = true
+  }else{
+    loggedIn = false
+  }
+  res.render("index", {user : req.session.user, loggedIn});
 });
 
 router.get('/profile', isLoggedIn, (req, res)=>{
-  res.render("profile", {user : req.session.user})
+  res.render("profile", {user : req.session.user, loggedIn})
 })
 
 //GET update user info page
 router.get('/profile/update',isLoggedIn, async (req, res)=>{
+
   const currentUser = req.session.user
   try {
     const updateUser = await User.findOne({username : currentUser.username})
-    res.render('profile-update', {user : updateUser})
+    res.render('profile-update', {user : updateUser, loggedIn})
   } catch (error) {
     console.error(error)
   }
