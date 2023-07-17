@@ -29,6 +29,7 @@ body {
 	line-height: 1;
 	font-size: 16px;
 	font-family: "Noto Sans", "Helvetica", sans-serif;
+	font-weight: 200;
 	background-color: #6b3666;
 	padding: 50px;
 	color: white;
@@ -57,6 +58,18 @@ table {
 h2 {
 	font-size: 2.5rem;
 	font-weight: 600;
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+h3 {
+	font-size: 1.4rem;
+	font-weight: 600;
+	margin-bottom: 20px;
+}
+
+strong {
+	font-weight: 400;
 }
 
 .button {
@@ -76,6 +89,7 @@ h2 {
 	margin: 10px;
 	padding: 10px;
 	font-size: 1rem;
+	text-align: center;
 }
 
 label {
@@ -161,3 +175,62 @@ label {
 }
 
 /* All Potions Styling */
+.potions-search {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 50px 0;
+}
+
+.potions-search input {
+	width: 60vw;
+}
+
+.potions-flex {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: 20px;
+}
+
+.potion-card {
+	background-color: #492446;
+	height: 600px;
+	width: 340px;
+	border-radius: 50px;
+	border: solid white 3px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+
+.potion-card img {
+	height: 350px;
+	width: 270px;
+	object-fit: cover;
+	border-radius: 50px;
+	margin-bottom: 50px;
+}
+
+.potion-card p {
+	font-size: 1rem;
+	line-height: 1.5rem;
+}
+
+.link-button {
+	height: 2.4rem;
+	width: 100px;
+	border-radius: 50px;
+	background-color: #00c1c1;
+	color: white;
+	font-size: 1rem;
+	font-weight: 500;
+	text-decoration: none;
+	text-align: center;
+	padding-top: 10px;
+	margin-top: 20px;
+}

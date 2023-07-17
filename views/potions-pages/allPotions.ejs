@@ -5,17 +5,32 @@
         {name,ingredients, ....},
         ]
 -->
-
-<h2>All potions</h2>
-<input class="data-input" type="search" name="searchPotions" placeholder="Search for potions...">
-<button class="button" type="submit">Search</button>
+<section class="potions-search">
+	<h2>All potions</h2>
+	<div>
+		<input class="data-input" type="search" name="searchPotions" placeholder="Search for potions...">
+		<button class="button" type="submit">Search</button>
+	</div>
+</section>
 <!-- Just a test to see if all potions is taken from the database, erase it after -->
 
-<% allPotions.forEach(potion=> { %>
-<div class="potion-card">
-	<img src="/potions/potion/<%- potion.img_url  %>" alt="potion image">
-	<h3><%- potion.name  %></h3>
-	<a href="/potions/potion/<%- potion.name  %>"></a>
-	<p></p>
-</div>
-<% }) %>
+<section class="potions-flex">
+	<% allPotions.forEach(potion=> { %>
+	<div class="potion-card">
+		<% if (potion.img_url !== null) { %>
+		<img src="<%- potion.img_url  %>" alt="potion image">
+		<% } %>
+		<% if (potion.img_url == null) { %>
+		<img src="/images/default_pot.png" alt="potion image">
+		<% } %>
+		<h3><%- potion.name  %></h3>
+		<% if (potion.difficulty !== null) { %>
+		<p><strong>Difficulty:</strong> <%- potion.difficulty %></p>
+		<% } %>
+		<% if (potion.effects !== null) { %>
+		<p><strong>Effects:</strong> <%- potion.effects %></p>
+		<% } %>
+		<a class="link-button" href="/potions/potion/<%- potion.name  %>">Read more</a>
+	</div>
+	<% }) %>
+</section>
