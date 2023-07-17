@@ -71,7 +71,7 @@ try {
 
 //GET go to Update page my potion
 router.get("/potion/:nameOfPotion/update", isLoggedIn, async(req, res)=>{
-    const potionName = req.params.nameOfPotion
+        const potionName = req.params.nameOfPotion
     try {
         const myCurrentPotion = await Potion.findOne({name : potionName})
         console.log(myCurrentPotion);
@@ -81,12 +81,21 @@ router.get("/potion/:nameOfPotion/update", isLoggedIn, async(req, res)=>{
     }
 })
 
-//TODO POST updating the current potion
+//POST updating the current potion
 router.post("/potion/:nameOfPotion/update", isLoggedIn, uploader.single("img_url"), async(req, res)=>{
     const potionName = req.params.nameOfPotion
+
+    let currentPotionUpdate
+
+    if (req.file) {
+        //creating a copy of the request body and assign the image path to the img_url property to match DB
+        currentPotionUpdate = { ...req.body, img_url: req.file.path}
+    } else {
+        currentPotionUpdate = { ...req.body}
+    }
     try {
         const currentPotion = await Potion.findOne({name : potionName})
-        const myCurrentUpdated = await Potion.findByIdAndUpdate(currentPotion._id, req.body)
+        const myCurrentUpdated = await Potion.findByIdAndUpdate(currentPotion._id, currentPotionUpdate)
         const myUpdatedPotion = await Potion.findById(currentPotion._id)
         res.redirect(`/potions/potion/${myUpdatedPotion.name}`)
     } catch (error) {
