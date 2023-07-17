@@ -86,5 +86,7 @@ router.get("/logout", isLoggedIn, (req, res) => {
   res.redirect("/")
 })
 
+//TODO Search route
+
 
 module.exports = router;
