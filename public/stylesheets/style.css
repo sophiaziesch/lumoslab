@@ -31,6 +31,7 @@ body {
 	font-family: "Noto Sans", "Helvetica", sans-serif;
 	background-color: #6b3666;
 	padding: 50px;
+	color: white;
 }
 ol,
 ul {
@@ -81,7 +82,7 @@ table {
 }
 
 #nav-dropdown {
-	display: none;
+	display: flex;
 	flex-direction: column;
 }
 
@@ -121,5 +122,18 @@ table {
 	background-color: #00c1c1;
 	color: white;
 	font-size: 1.2rem;
+	font-weight: 500;
+}
+
+/* Signup Styling */
+.flex-signup {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+h2 {
+	font-size: 2.5rem;
 	font-weight: 500;
 }
