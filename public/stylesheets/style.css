@@ -53,6 +53,37 @@ table {
 	border-spacing: 0;
 }
 
+/* Styles for all pages */
+h2 {
+	font-size: 2.5rem;
+	font-weight: 600;
+}
+
+.button {
+	height: 2.6rem;
+	width: 200px;
+	border-radius: 50px;
+	background-color: #00c1c1;
+	color: white;
+	font-size: 1.2rem;
+	font-weight: 500;
+}
+
+.data-input {
+	border-radius: 50px;
+	width: 500px;
+	height: 2.4rem;
+	margin: 10px;
+	padding: 10px;
+	font-size: 1rem;
+}
+
+label {
+	text-align: center;
+	font-size: 1.3rem;
+	font-weight: 500;
+}
+
 /* Navbar Styling */
 .nav {
 	display: flex;
@@ -104,36 +135,29 @@ table {
 	width: 700px;
 }
 
-.search-index {
-	height: 2.6rem;
-	width: 800px;
-	margin: 20px;
-	border-radius: 50px;
-}
-
-.search-index::placeholder {
+.flex-index input::placeholder {
 	text-align: center;
 }
 
-.button {
-	height: 2.6rem;
-	width: 200px;
-	border-radius: 50px;
-	background-color: #00c1c1;
-	color: white;
-	font-size: 1.2rem;
-	font-weight: 500;
-}
-
-/* Signup Styling */
-.flex-signup {
+/* Signup & Login Styling */
+.flex-auth {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	margin: 50px;
 }
 
-h2 {
-	font-size: 2.5rem;
-	font-weight: 500;
+.flex-auth form {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 30px;
 }
+
+.flex-auth input {
+	margin: 20px;
+}
+
+/* All Potions Styling */

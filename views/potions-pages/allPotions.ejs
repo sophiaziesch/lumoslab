@@ -1,4 +1,4 @@
-<!-- "allPotions" will be the name of the objet with all potions from database :
+<!-- "allPotions" will be the name of the object with all potions from database :
     allPotions: [
         {name,ingredients, ....},
         {name,ingredients, ....},
@@ -7,10 +7,15 @@
 -->
 
 <h2>All potions</h2>
-
+<input class="data-input" type="search" name="searchPotions" placeholder="Search for potions...">
+<button class="button" type="submit">Search</button>
 <!-- Just a test to see if all potions is taken from the database, erase it after -->
-<ul>
-  <% allPotions.forEach(potion=> { %>
-    <li> <a href="/potions/potion/<%- potion.name  %>"><%- potion.name  %></a></li>
-  <% }) %>
-</ul>
+
+<% allPotions.forEach(potion=> { %>
+<div class="potion-card">
+	<img src="/potions/potion/<%- potion.img_url  %>" alt="potion image">
+	<h3><%- potion.name  %></h3>
+	<a href="/potions/potion/<%- potion.name  %>"></a>
+	<p></p>
+</div>
+<% }) %>

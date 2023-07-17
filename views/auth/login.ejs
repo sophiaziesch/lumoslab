@@ -1,16 +1,19 @@
-<h2>Login</h2>
+<main class="flex-auth">
+	<h2>Login</h2>
 
-<form action="/auth/login" method="POST">
-	<label>Username:
-		<input type="text" name="username" required>
-	</label>
-	<label>Password:
-		<input type="password" name="password" required>
-	</label>
+	<form action="/auth/login" method="POST">
+		<label>Username: <br>
+			<input class="data-input" type="text" name="username" required>
+		</label>
+		<label>Password: <br>
+			<input class="data-input" type="password" name="password" required>
+		</label>
 
-	<button type="submit">Login</button>
-</form>
+		<button class="button" type="submit">Login</button>
+	</form>
 
-<% if (typeof errorMessage !== 'undefined') { %>
-<p style="color: red"><%= errorMessage %></p>
-<% } %>
+	<% if (typeof errorMessage !== 'undefined') { %>
+	<p style="color: red"><%= errorMessage %></p>
+	<% } %>
+
+</main>
