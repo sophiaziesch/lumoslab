@@ -18,4 +18,14 @@
     >Image:
     <input type="file" name="img_url" accept="image/png, image/jpg" />
   </label>
+
+  <button type="submit">Update</button>
 </form>
+
+<% if (typeof wrongPassword !== 'undefined') { %>
+  <p style="color: red"><%= wrongPassword %></p>
+  <% } %>
+
+  <% if (typeof wrongNewPassword !== 'undefined') { %>
+    <p style="color: red"><%= wrongNewPassword %></p>
+    <% } %>
