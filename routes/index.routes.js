@@ -45,14 +45,16 @@ router.post('/profile/update', isLoggedIn, uploader.single("img_url"), async (re
   const newInfos = {}
 
   try {
+    //finding the user in databse
     const findCurrentUser = await User.findOne({ username: currentUser.username })
-    //When the user wants to change his password
+
+    //If the user wants to change his password
     if (actualPassword || newPassword || confirmedNewPassword) {
-      //checking if the pw typed is same as actual pw
+      //checking if the pw typed is the same as actual pw in databse
       if (bcrypt.compareSync(actualPassword, findCurrentUser.passwordHash)) {
-        //if the new pw and the confirmed pw match
+        //then if the new pw and the confirmed pw match
         if (newPassword === confirmedNewPassword) {
-          //generatiing a SALT to use it in "hashSync()" method to encrypt our pw
+          //generating a SALT to use it in "hashSync()" method to encrypt our new pw
           const salt = bcrypt.genSaltSync(13)
           //encrypting the newpassword and asign it to a new property matching our data
           newInfos.passwordHash = bcrypt.hashSync(newPassword, salt)
