@@ -29,6 +29,11 @@ router.get('/', async (req, res) => {
 router.get('/potion/:potionName', async (req, res) => {
     const potionName = req.params.potionName
     const currentUser = req.session.user
+    if (req.session.user) {
+        loggedIn = true
+    } else {
+        loggedIn = false
+    }
     try {
         const currentPotion = await Potion.findOne({ name: potionName })
         res.render("potions-pages/potion", { potion: currentPotion, user: currentUser , loggedIn})
