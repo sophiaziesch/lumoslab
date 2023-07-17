@@ -22,6 +22,7 @@ const projectName = 'lumoslab'
 
 app.locals.appTitle = `${capitalize(projectName)} created with IronLauncher`
 
+
 // 👇 Start handling routes here
 const indexRoutes = require('./routes/index.routes')
 app.use('/', indexRoutes)
@@ -43,10 +44,9 @@ const allPotionsToDatabase = async()=>{
     try {
         await Potion.insertMany(data)
     } catch (error) {
-        console.error(error)
+        console.error("boom")
     }
 }
-
 allPotionsToDatabase()
 
 

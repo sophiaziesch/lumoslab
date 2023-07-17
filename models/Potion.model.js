@@ -4,6 +4,7 @@ const potionSchema = new Schema(
    {
       name: {
          type: String,
+         unique : true,
          trim: true,
          required: true,
       },
@@ -21,7 +22,10 @@ const potionSchema = new Schema(
       effects: String,
       sideEffects: String,
       inventor: String,
-      img_url: String
+      img_url: {
+         type : String,
+         default: "/images/default_pot.png"
+      }
    },
    {
       // this second object adds extra properties: `createdAt` and `updatedAt`    

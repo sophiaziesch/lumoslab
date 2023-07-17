@@ -1,0 +1,16 @@
+<!-- "allPotions" will be the name of the objet with all potions from database :
+    allPotions: [
+        {name,ingredients, ....},
+        {name,ingredients, ....},
+        {name,ingredients, ....},
+        ]
+-->
+
+<h2>All potions</h2>
+
+<!-- Just a test to see if all potions is taken from the database, erase it after -->
+<ul>
+  <% allPotions.forEach(potion=> { %>
+    <li> <a href="/potions/potion/<%- potion.name  %>"><%- potion.name  %></a></li>
+  <% }) %>
+</ul>

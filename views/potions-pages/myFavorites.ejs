@@ -1,0 +1,8 @@
+<h2>My Favorite potions</h2>
+
+<ul>
+    <% myFavorites.forEach(favorite => { %>
+     <li><%- favorite.name  %></li>
+     <li><img src="<%- favorite.img_url  %>" alt="" style="height : 200px"></li>
+    <% }) %>
+</ul>

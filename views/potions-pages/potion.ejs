@@ -1,0 +1,23 @@
+<!-- "potion" will be the name of the objet with all potion informations from database :
+    potion {
+        name,
+        ingredients,
+        difficulty,
+        characteristics,
+        time,
+        effects,
+        sideEffects,
+        inventor,
+        img_url
+    }
+-->
+
+<!-- /!\ Shows the UPDATE and DELETE button ONLY if the user is the inventor ! keep this part, juste style it -->
+<% if ( user && user.username === potion.inventor) { %>
+ <a href="/potions/potion/<%- potion.name %>/update"><button>Update</button></a>
+ <a href="/potions/potion/<%- potion.name %>/delete"><button>Delete</button></a>
+<% } %>
+
+<h2><% potion.name %></h2>
+<!-- TODO putting inline style just to see what it looks like after creating, styling will be done by Sophia -->
+<img src="<%- potion.img_url %>" alt="potion_test" style="height : 200px">

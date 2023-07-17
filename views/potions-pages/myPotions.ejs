@@ -1,0 +1,10 @@
+<h2>My potions</h2>
+
+<ul>
+  <% myPotions.forEach(potion => { %>
+
+  <!-- the potion name should be a link to the potion page so you can either update or delete -->
+  <li><a href="/potions/potion/<%- potion.name  %>"><%- potion.name %></a></li>
+  <li><img src="<%- potion.img_url  %>" alt="" style="height: 200px" /></li>
+  <% }) %>
+</ul>
