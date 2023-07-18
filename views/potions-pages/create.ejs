@@ -14,3 +14,7 @@
 
   <button type="submit">Create potion</button>
 </form>
+
+<% if (typeof errorMessage !== 'undefined') { %>
+	<p style="color: red"><%= errorMessage %></p>
+	<% } %>

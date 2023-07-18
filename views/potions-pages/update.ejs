@@ -10,6 +10,9 @@
     >Name:
     <input type="text" name="name" value="<%- potion.name %>" required />
   </label>
+  <% if (typeof errorMessage !== 'undefined') { %>
+    <p style="color: red"><%= errorMessage %></p>
+    <% } %>
   <label
     >Ingredients:
     <!-- If there are ingredients -->
@@ -33,3 +36,4 @@
 
   <button type="submit">Update Potion</button>
 </form>
+

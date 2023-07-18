@@ -80,7 +80,7 @@ router.post('/create', uploader.single("img_url"), async (req, res) => {
         const doesNameExist = await Potion.findOne({ name: aPotion.name })
         console.log(doesNameExist);
         if (doesNameExist) {
-            //TODO then render the create page with error message
+            //then render the create page with error message
             res.render("potions-pages/create", { loggedIn, errorMessage: "This potion name already exist" })
         }
         const newPotion = await Potion.create(aPotion)
@@ -112,7 +112,6 @@ router.get("/potion/:nameOfPotion/update", isLoggedIn, async (req, res) => {
     const potionName = req.params.nameOfPotion
     try {
         const myCurrentPotion = await Potion.findOne({ name: potionName })
-        console.log(myCurrentPotion);
         res.render("potions-pages/update", { potion: myCurrentPotion, loggedIn })
     } catch (error) {
         console.error(error)
@@ -133,11 +132,18 @@ router.post("/potion/:nameOfPotion/update", isLoggedIn, uploader.single("img_url
     }
     try {
         const currentPotion = await Potion.findOne({ name: potionName })
-        //If the name already exist in the databse and is not the current potion name
+        //If the name already exist in the database and is not the current potion name
         const doesNewNameExist = await Potion.findOne({ name: currentPotionUpdate.name })
-        if (potionName === currentPotionUpdate.name && doesNewNameExist._id !== currentPotion._id) {
-            //TODO then render the create page with error message
-            res.render("potions-pages/update", {potion: currentPotion, loggedIn, errorMessage: "This potion name already exist" })
+        if(doesNewNameExist){
+            //Then parsing the id into string so we can compare the id of the new and the old potion
+            const potionId = "" + currentPotion._id
+            const newPotionId = "" + doesNewNameExist._id
+            //if it's a different id, that means the actual name from another potion, the name is not available then send error message
+            if (potionId !== newPotionId) {
+                //TODO then render the update page with error message
+                console.log("name already used", currentPotion.name );
+                res.render("potions-pages/update", {potion: currentPotion, loggedIn, errorMessage: "This potion name already exist" })
+            }
         }
         
         const myCurrentUpdated = await Potion.findByIdAndUpdate(currentPotion._id, currentPotionUpdate)
