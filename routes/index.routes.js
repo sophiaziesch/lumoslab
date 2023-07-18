@@ -82,7 +82,7 @@ router.post('/profile/update', isLoggedIn, uploader.single("img_url"), async (re
 })
 
 router.get("/logout", isLoggedIn, (req, res) => {
-  delete req.session.user
+  req.session.destroy()
   res.redirect("/")
 })
 

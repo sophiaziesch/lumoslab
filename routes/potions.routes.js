@@ -9,6 +9,13 @@ let loggedIn = true
 //Cloudinary middleware
 const uploader = require('../config/cloudinary.config.js');
 
+//Function that will uppercase the first letter of a string
+function uppercaseFirstChar(string){
+    const arrayString = string.split('')
+    arrayString[0] = arrayString[0].toUpperCase()
+    return arrayString.join('')
+}
+
 //route already set in app.js "/potions--"
 //GET all potions page
 router.get('/', async (req, res) => {
@@ -32,7 +39,8 @@ router.post("/", async (req, res) => {
     } else {
         loggedIn = false
     }
-    const potionNameSearch = req.body.searchPotions
+    const potionNameSearch = uppercaseFirstChar(req.body.searchPotions)
+    console.log(potionNameSearch);
     try {
         const searchResults = await Potion.find({ name: potionNameSearch })
         console.log(searchResults);
@@ -68,12 +76,13 @@ router.get('/create', isLoggedIn, (req, res) => {
 router.post('/create', uploader.single("img_url"), async (req, res) => {
     let aPotion
     const currentInventor = req.session.user.username
+    const potionName = uppercaseFirstChar(req.body.name)
     //checking if user inserting an image, if not, the default one will be display
     if (req.file) {
         //creating a copy of the request body and assign the image path to the img_url property to match DB
-        aPotion = { ...req.body, img_url: req.file.path, inventor: currentInventor }
+        aPotion = { ...req.body, name : potionName, img_url: req.file.path, inventor: currentInventor }
     } else {
-        aPotion = { ...req.body, inventor: currentInventor }
+        aPotion = { ...req.body, name : potionName, inventor: currentInventor }
     }
     try {
         //If the name already exist in the databse
@@ -123,30 +132,32 @@ router.post("/potion/:nameOfPotion/update", isLoggedIn, uploader.single("img_url
     const potionName = req.params.nameOfPotion
 
     let currentPotionUpdate
-
+    const newName = uppercaseFirstChar(req.body.name)
     if (req.file) {
         //creating a copy of the request body and assign the image path to the img_url property to match DB
-        currentPotionUpdate = { ...req.body, img_url: req.file.path }
+        currentPotionUpdate = { ...req.body, name : newName, img_url: req.file.path }
     } else {
-        currentPotionUpdate = { ...req.body }
+        currentPotionUpdate = { ...req.body, name : newName }
     }
     try {
         const currentPotion = await Potion.findOne({ name: potionName })
-        //If the name already exist in the database and is not the current potion name
+
+        //Trying to find the new potion name already exist in DB
         const doesNewNameExist = await Potion.findOne({ name: currentPotionUpdate.name })
         if(doesNewNameExist){
-            //Then parsing the id into string so we can compare the id of the new and the old potion
+            //Parsing the id into string so we can compare the id of the new and the old potion
             const potionId = "" + currentPotion._id
             const newPotionId = "" + doesNewNameExist._id
-            //if it's a different id, that means the actual name from another potion, the name is not available then send error message
+            //if it's a different id, that means the actual name exist on another potion, send error message in that case
             if (potionId !== newPotionId) {
-                //TODO then render the update page with error message
+                //Render the UPDATE page with error message
                 console.log("name already used", currentPotion.name );
                 res.render("potions-pages/update", {potion: currentPotion, loggedIn, errorMessage: "This potion name already exist" })
             }
         }
-        
+        //Find and update the potion, findByIdAndUpdate() promise will return the potion BEFORE being updated
         const myCurrentUpdated = await Potion.findByIdAndUpdate(currentPotion._id, currentPotionUpdate)
+        //Refilter again to have the actual updated potion
         const myUpdatedPotion = await Potion.findById(currentPotion._id)
         res.redirect(`/potions/potion/${myUpdatedPotion.name}`)
     } catch (error) {
