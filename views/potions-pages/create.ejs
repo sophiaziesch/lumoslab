@@ -1,20 +1,50 @@
-<h2>Create potions</h2>
+<main class="create-flex">
+	<h2>Create potion</h2>
 
-<!--TODO form created with basics info just to make the img work + link it to the route, Sophia will complete it -->
-<form method="POST" action="/potions/create" enctype="multipart/form-data">
-  <label
-    >Name:
-    <input type="text" name="name" required />
-  </label>
+	<!--TODO form created with basics info just to make the img work + link it to the route, Sophia will complete it -->
+	<form method="POST" action="/potions/create" enctype="multipart/form-data">
+		<section class="create-form-flex">
+			<label>Name: <br>
+				<input class="data-input" type="text" name="name" required />
+			</label>
 
-  <label
-    >Image:
-    <input type="file" name="img_url" accept="image/png, image/jpg" />
-  </label>
+			<label>Ingredients: <br>
+				<input class="data-input" type="text" name="ingredients" />
+			</label>
 
-  <button type="submit">Create potion</button>
-</form>
+			<label>Difficulty <br>
+				<input class="data-input" type="text" name="difficulty" />
+			</label>
 
-<% if (typeof errorMessage !== 'undefined') { %>
+			<label>Characteristics: <br>
+				<input class="data-input" type="text" name="characteristics" />
+			</label>
+
+			<label>Time: <br>
+				<input class="data-input" type="number" name="time">
+			</label>
+
+			<label>Effects: <br>
+				<input class="data-input" type="text" name="effects" />
+			</label>
+
+			<label>Side Effects: <br>
+				<input class="data-input" type="text" name="sideEffects" />
+			</label>
+
+			<label>Inventor: <br>
+				<input class="data-input" type="text" name="inventor" />
+			</label>
+
+			<label>Image: <br>
+				<input class="file-upload" for="file-upload" type="file" name="img_url" accept="image/png, image/jpg" />
+			</label>
+
+			<button class="button" type="submit">Create potion</button>
+		</section>
+	</form>
+
+	<% if (typeof errorMessage !== 'undefined') { %>
 	<p style="color: red"><%= errorMessage %></p>
 	<% } %>
+</main>

@@ -166,6 +166,7 @@ label {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	gap: 20px;
 }
 
 .logo-index {
@@ -196,10 +197,7 @@ label {
 	justify-content: center;
 	align-items: center;
 	margin: 30px;
-}
-
-.flex-auth input {
-	margin: 20px;
+	gap: 20px;
 }
 
 /* All Potions Styling */
@@ -261,4 +259,27 @@ label {
 	text-align: center;
 	padding-top: 10px;
 	margin-top: 20px;
+}
+
+/* Create potion styling */
+
+.create-flex {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 50px 0;
+}
+
+.create-form-flex {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 20px;
+}
+
+.file-upload {
+	text-align: center;
+	padding: 20px 0;
 }
