@@ -14,10 +14,42 @@
 
 <!-- /!\ Shows the UPDATE and DELETE button ONLY if the user is the inventor ! keep this part, juste style it -->
 <% if ( user && user.username === potion.inventor) { %>
- <a href="/potions/potion/<%- potion.name %>/update"><button>Update</button></a>
- <a href="/potions/potion/<%- potion.name %>/delete"><button>Delete</button></a>
+<a href="/potions/potion/<%- potion.name %>/update"><button>Update</button></a>
+<a href="/potions/potion/<%- potion.name %>/delete"><button>Delete</button></a>
 <% } %>
 
-<h2><% potion.name %></h2>
-<!-- TODO putting inline style just to see what it looks like after creating, styling will be done by Sophia -->
-<img src="<%- potion.img_url %>" alt="potion_test" style="height : 200px">
+<main class="potion-flex">
+	<h2><%- potion.name %></h2>
+	<!-- TODO putting inline style just to see what it looks like after creating, styling will be done by Sophia -->
+	<div>
+		<img src="<%- potion.img_url %>" alt="potion_test" style="height : 200px">
+		<h3>Ingredients:</h3>
+		<ul>
+			<% potion.ingredients.forEach(ingredient => { %>
+			<li><%- ingredient %></li>
+			<% }) %>
+		</ul>
+		<h3>Difficulty:</h3>
+		<p><%- potion.difficulty %></p>
+		<h3>Created by:</h3>
+		<p><%- potion.createdBy  %></p>
+	</div>
+	<h3>Characteristics:</h3>
+	<ul>
+		<% potion.characteristics.forEach(characteristic => { %>
+		<li><%- characteristic %></li>
+		<% }) %>
+	</ul>
+	<h3>Effects:</h3>
+	<ul>
+		<% potion.effects.forEach(effect => { %>
+		<li><%- effect %></li>
+		<% }) %>
+	</ul>
+	<h3>Side Effects:</h3>
+	<ul>
+		<% potion.sideEffects.forEach(sideEffect => { %>
+		<li><%- sideEffect %></li>
+		<% }) %>
+	</ul>
+</main>
