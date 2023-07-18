@@ -1,4 +1,4 @@
-<!-- "potion" will be the name of the objet with all potion informations from database :
+<!-- "potion" will be the name of the object with all potion informations from database :
     potion {
         name,
         ingredients,
@@ -12,44 +12,57 @@
     }
 -->
 
-<!-- /!\ Shows the UPDATE and DELETE button ONLY if the user is the inventor ! keep this part, juste style it -->
-<% if ( user && user.username === potion.inventor) { %>
-<a href="/potions/potion/<%- potion.name %>/update"><button>Update</button></a>
-<a href="/potions/potion/<%- potion.name %>/delete"><button>Delete</button></a>
-<% } %>
-
 <main class="potion-flex">
 	<h2><%- potion.name %></h2>
 	<!-- TODO putting inline style just to see what it looks like after creating, styling will be done by Sophia -->
-	<div>
-		<img src="<%- potion.img_url %>" alt="potion_test" style="height : 200px">
-		<h3>Ingredients:</h3>
-		<ul>
-			<% potion.ingredients.forEach(ingredient => { %>
-			<li><%- ingredient %></li>
-			<% }) %>
-		</ul>
-		<h3>Difficulty:</h3>
-		<p><%- potion.difficulty %></p>
-		<h3>Created by:</h3>
-		<p><%- potion.createdBy  %></p>
+	<div class="potion-flex-top">
+		<% if (potion.img_url !== null) { %>
+		<img src="<%- potion.img_url  %>" alt="potion image">
+		<% } %>
+		<% if (potion.img_url == null) { %>
+		<img src="/images/default_pot.png" alt="potion image">
+		<% } %>
+		<div class="potion-flex-side">
+			<% if (potion.ingredients !== null && potion.ingredients !== undefined && potion.ingredients !== 0) { %>
+			<h3>Ingredients:</h3>
+			<ul>
+				<% potion.ingredients.forEach(ingredient => { %>
+				<li><%- ingredient %></li>
+				<% }) %>
+			</ul>
+			<% } %>
+			<% if (potion.difficulty !== null) { %>
+			<h3>Difficulty:</h3>
+			<p><%- potion.difficulty %></p>
+			<% } %>
+			<% if (potion.time !== null && potion.time !== 0 && potion.time !== undefined) { %>
+			<h3>Time:</h3>
+			<p><%- potion.time %></p>
+			<% } %>
+			<% if (potion.createdBy !== null && potion.createdBy !== undefined ) { %>
+			<h3>Created by:</h3>
+			<p><%- potion.createdBy  %></p>
+			<% } %>
+		</div>
 	</div>
+	<% if (potion.characteristics !== null) { %>
 	<h3>Characteristics:</h3>
-	<ul>
-		<% potion.characteristics.forEach(characteristic => { %>
-		<li><%- characteristic %></li>
-		<% }) %>
-	</ul>
+	<p><%- potion.characteristics  %></p>
+	<% } %>
+	<% if (potion.effects !== null) { %>
 	<h3>Effects:</h3>
-	<ul>
-		<% potion.effects.forEach(effect => { %>
-		<li><%- effect %></li>
-		<% }) %>
-	</ul>
+	<p><%- potion.effects  %></p>
+	<% } %>
+	<% if (potion.sideEffects !== null) { %>
 	<h3>Side Effects:</h3>
-	<ul>
-		<% potion.sideEffects.forEach(sideEffect => { %>
-		<li><%- sideEffect %></li>
-		<% }) %>
-	</ul>
+	<p><%- potion.sideEffects %></p>
+	<% } %>
+
+	<!-- /!\ Shows the UPDATE and DELETE button ONLY if the user is the inventor ! keep this part, juste style it -->
+	<% if ( user && user.username === potion.createdBy) { %>
+	<a href="/potions/potion/<%- potion.name %>/update"><button class="button">Update</button></a>
+	<a href="/potions/potion/<%- potion.name %>/delete"><button class="button">Delete</button></a>
+	<% } %>
 </main>
+
+<div class="space"></div>
