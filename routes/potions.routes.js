@@ -34,9 +34,9 @@ router.post("/", async (req, res) => {
     }
     const potionNameSearch = req.body.searchPotions
     try {
-        const searchResults = await Potion.find({name : potionNameSearch})
+        const searchResults = await Potion.find({ name: potionNameSearch })
         console.log(searchResults);
-        res.render("potions-pages/allPotions", { allPotions : searchResults, loggedIn })
+        res.render("potions-pages/allPotions", { allPotions: searchResults, loggedIn })
     } catch (error) {
         console.error(error)
     }
@@ -76,6 +76,13 @@ router.post('/create', uploader.single("img_url"), async (req, res) => {
         aPotion = { ...req.body, inventor: currentInventor }
     }
     try {
+        //If the name already exist in the databse
+        const doesNameExist = await Potion.findOne({ name: aPotion.name })
+        console.log(doesNameExist);
+        if (doesNameExist) {
+            //TODO then render the create page with error message
+            res.render("potions-pages/create", { loggedIn, errorMessage: "This potion name already exist" })
+        }
         const newPotion = await Potion.create(aPotion)
         //find all potions of current user
         const myPotions = await Potion.find({ inventor: currentInventor })
@@ -126,6 +133,13 @@ router.post("/potion/:nameOfPotion/update", isLoggedIn, uploader.single("img_url
     }
     try {
         const currentPotion = await Potion.findOne({ name: potionName })
+        //If the name already exist in the databse and is not the current potion name
+        const doesNewNameExist = await Potion.findOne({ name: currentPotionUpdate.name })
+        if (potionName === currentPotionUpdate.name && doesNewNameExist._id !== currentPotion._id) {
+            //TODO then render the create page with error message
+            res.render("potions-pages/update", {potion: currentPotion, loggedIn, errorMessage: "This potion name already exist" })
+        }
+        
         const myCurrentUpdated = await Potion.findByIdAndUpdate(currentPotion._id, currentPotionUpdate)
         const myUpdatedPotion = await Potion.findById(currentPotion._id)
         res.redirect(`/potions/potion/${myUpdatedPotion.name}`)
