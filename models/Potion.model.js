@@ -21,7 +21,7 @@ const potionSchema = new Schema(
       time: Number,
       effects: String,
       sideEffects: String,
-      inventor: String,
+      createdBy: String,
       img_url: {
          type : String,
          default: "/images/default_pot.png"

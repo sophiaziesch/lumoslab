@@ -4,6 +4,8 @@ const Potion = require('../models/Potion.model');
 const User = require('../models/User.model');
 const router = express.Router();
 
+//Set the logging status to true by default (true when a user is logged in). 
+//Will be used to display differents links on navbar
 let loggedIn = true
 
 //Cloudinary middleware
@@ -19,6 +21,7 @@ function uppercaseFirstChar(string){
 //route already set in app.js "/potions--"
 //GET all potions page
 router.get('/', async (req, res) => {
+    //checking if a user is logged in and update the loggedIn variable
     if (req.session.user) {
         loggedIn = true
     } else {
@@ -75,14 +78,14 @@ router.get('/create', isLoggedIn, (req, res) => {
 //POST create page using CLOUDINARY as a middleware
 router.post('/create', uploader.single("img_url"), async (req, res) => {
     let aPotion
-    const currentInventor = req.session.user.username
+    const currentCreator = req.session.user.username
     const potionName = uppercaseFirstChar(req.body.name)
     //checking if user inserting an image, if not, the default one will be display
     if (req.file) {
         //creating a copy of the request body and assign the image path to the img_url property to match DB
-        aPotion = { ...req.body, name : potionName, img_url: req.file.path, inventor: currentInventor }
+        aPotion = { ...req.body, name : potionName, img_url: req.file.path, createdBy: currentCreator }
     } else {
-        aPotion = { ...req.body, name : potionName, inventor: currentInventor }
+        aPotion = { ...req.body, name : potionName, createdBy: currentCreator }
     }
     try {
         //If the name already exist in the databse
@@ -94,9 +97,9 @@ router.post('/create', uploader.single("img_url"), async (req, res) => {
         }
         const newPotion = await Potion.create(aPotion)
         //find all potions of current user
-        const myPotions = await Potion.find({ inventor: currentInventor })
-        //update the current user potions inventory
-        await User.findOneAndUpdate({ username: currentInventor }, { potions: myPotions })
+        const myPotions = await Potion.find({createdBy: currentCreator })
+        //update the current user potions createdBy
+        await User.findOneAndUpdate({ username: currentCreator }, { potions: myPotions })
         res.redirect(`/potions/potion/${newPotion.name}`)
     } catch (error) {
         console.error(error);
