@@ -5,6 +5,55 @@
         favorites(array)
 } -->
 
+<main class="profile-flex">
+	<h2>Profile of <%- user.username %></h2>
+	<h3>Username:</h3>
+	<p><%- user.username %></p>
+	<h3>My Potions</h3>
 
-<h2>Profile of <%- user.username %></h2>
-<a href="/profile/update"><button>Update profile</button></a>
+	<section class="potions-flex">
+		<% user.potions.forEach(potion=> { %>
+		<div class="potion-card">
+			<% if (potion.img_url !== null) { %>
+			<img src="<%- potion.img_url  %>" alt="potion image">
+			<% } %>
+			<% if (potion.img_url == null) { %>
+			<img src="/images/default_pot.png" alt="potion image">
+			<% } %>
+			<h3><%- potion.name  %></h3>
+			<% if (potion.difficulty !== null) { %>
+			<p><strong>Difficulty:</strong> <%- potion.difficulty %></p>
+			<% } %>
+			<% if (potion.effects !== null) { %>
+			<p><strong>Effects:</strong> <%- potion.effects %></p>
+			<% } %>
+			<a class="link-button" href="/potions/potion/<%- potion.name  %>">Read more</a>
+		</div>
+		<% }) %>
+	</section>
+
+	<h3>My Favourites</h3>
+
+	<section class="potions-flex">
+		<% user.favorites.forEach(potion=> { %>
+		<div class="potion-card">
+			<% if (potion.img_url !== null) { %>
+			<img src="<%- potion.img_url  %>" alt="potion image">
+			<% } %>
+			<% if (potion.img_url == null) { %>
+			<img src="/images/default_pot.png" alt="potion image">
+			<% } %>
+			<h3><%- potion.name  %></h3>
+			<% if (potion.difficulty !== null) { %>
+			<p><strong>Difficulty:</strong> <%- potion.difficulty %></p>
+			<% } %>
+			<% if (potion.effects !== null) { %>
+			<p><strong>Effects:</strong> <%- potion.effects %></p>
+			<% } %>
+			<a class="link-button" href="/potions/potion/<%- potion.name  %>">Read more</a>
+		</div>
+		<% }) %>
+	</section>
+
+	<a href="/profile/update"><button class="button">Update profile</button></a>
+</main>
