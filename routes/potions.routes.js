@@ -43,7 +43,6 @@ router.post("/", async (req, res) => {
         loggedIn = false
     }
     const potionNameSearch = uppercaseFirstChar(req.body.searchPotions)
-    console.log(potionNameSearch);
     try {
         const searchResults = await Potion.find({ name: potionNameSearch })
         console.log(searchResults);
@@ -62,9 +61,16 @@ router.get('/potion/:potionName', async (req, res) => {
     } else {
         loggedIn = false
     }
+    let isPotionFavorite
     try {
+        if(loggedIn){
+            const findPotion = await Potion.findOne({name : potionName})
+            const findUser = await User.findOne({username : currentUser.username})
+            //finding the potion index in the favorites array
+            isPotionFavorite = findUser.favorites.includes(findPotion._id)
+        }
         const currentPotion = await Potion.findOne({ name: potionName })
-        res.render("potions-pages/potion", { potion: currentPotion, user: currentUser, loggedIn })
+        res.render("potions-pages/potion", { potion: currentPotion, user: currentUser, loggedIn, isPotionFavorite })
     } catch (error) {
         console.error(error)
     }
@@ -201,6 +207,25 @@ router.get("/potion/:nameOfPotion/favorite", isLoggedIn, async(req, res)=>{
         const findUser = await User.findOne({username : currentUsername})
         //pushing the potion to the favorites array
         findUser.favorites.push(findPotion)
+        //Need to use the "save()" function to save the changes into the databse
+        await findUser.save()
+        res.redirect(`/potions/potion/${potionName}/`)
+    } catch (error) {
+        console.error(error)
+    }
+})
+
+//GET remove a potion from the "Favorite" user's inventory
+router.get("/potion/:nameOfPotion/delete-favorite", isLoggedIn, async(req, res)=>{
+    const potionName = req.params.nameOfPotion
+    const currentUsername = req.session.user.username
+    try {
+        const findPotion = await Potion.findOne({name : potionName})
+        const findUser = await User.findOne({username : currentUsername})
+        //finding the potion index in the favorites array
+        const potionIndex = findUser.favorites.indexOf(findPotion._id)
+        //remove the potion using splice() from the favorites array
+        findUser.favorites.splice(potionIndex, 1)
         //Need to use the "save()" function to save the changes into the databse
         await findUser.save()
         res.redirect(`/potions/potion/${potionName}/`)
