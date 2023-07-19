@@ -25,13 +25,16 @@ window.addEventListener("load", () => {
 		newRemoveBtn.addEventListener('click', (event)=>{
 			const inputToRemove = event.target.previousElementSibling;
 			inputToRemove.remove()
+			newBr.remove()
 			newRemoveBtn.remove()
 		})
 	})
 
 	removeIngredientBtn.forEach(button=>{
-		button.addEventListener('click', ()=>{
+		button.addEventListener('click', (event)=>{
 			const inputToRemove = event.target.previousElementSibling;
+			const brToRemove = event.target.nextElementSibling;
+			brToRemove.remove()
 			inputToRemove.remove()
 			button.remove()
 		})
