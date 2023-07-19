@@ -9,7 +9,7 @@
 			<% if (typeof errorMessage !== 'undefined') { %>
 			<p style="color: red"><%= errorMessage %></p>
 			<% } %>
-			<label>Ingredients: <br>
+			<label class="ingredients">Ingredients: <br><button type="button" class="add_ingredient button"> + Add ingredient</button><br>
 				<!-- If there are ingredients -->
 				<% if (potion.ingredients.length > 0) { %> <%
     potion.ingredients.forEach(ingredient => { %>
@@ -20,26 +20,25 @@
 				<%} %>
 			</label>
 			<label>Difficulty: <br>
-				<input class="data-input" type="text" name="difficulty" />
+				<input class="data-input" type="text" name="difficulty" value="<%- potion.difficulty %>"/>
 			</label>
 
 			<label>Characteristics: <br>
-				<input class="data-input" type="text" name="characteristics" />
+				<input class="data-input" type="text" name="characteristics" value="<%- potion.characteristics %>"/>
 			</label>
 
 			<label>Time: <br>
-				<input class="data-input" type="number" name="time">
+				<input class="data-input" type="number" name="time" value="<%- potion.time %>">
 			</label>
 
 			<label>Effects: <br>
-				<input class="data-input" type="text" name="effects" />
+				<input class="data-input" type="text" name="effects" value="<%- potion.effects %>"/>
 			</label>
 
 			<label>Side Effects: <br>
-				<input class="data-input" type="text" name="sideEffects" />
+				<input class="data-input" type="text" name="sideEffects" value="<%- potion.sideEffects %>"/>
 			</label>
 
-			<!-- IMAGE LABEL, DONT DELETE -->
 			<label>Image: <br>
 				<input class="file-upload" type="file" name="img_url" accept="image/png, image/jpg" />
 			</label>
