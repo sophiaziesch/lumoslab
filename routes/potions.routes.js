@@ -186,7 +186,7 @@ router.get('/my-favorites', isLoggedIn, async (req, res) => {
     try {
         
         const myFavorites = await User.findOne({ username: currentUsername }).populate("favorites")
-        res.render('potions-pages/myFavorites', { myFavorites: myFavorites.potions, loggedIn })
+        res.render('potions-pages/myFavorites', { myFavorites: myFavorites.favorites, loggedIn })
     } catch (error) {
         console.error(error)
     }
@@ -199,9 +199,10 @@ router.get("/potion/:nameOfPotion/favorite", isLoggedIn, async(req, res)=>{
     try {
         const findPotion = await Potion.findOne({name : potionName})
         const findUser = await User.findOne({username : currentUsername})
+        //pushing the potion to the favorites array
         findUser.favorites.push(findPotion)
+        //Need to use the "save()" function to save the changes into the databse
         await findUser.save()
-        console.log(findUser.favorites);
         res.redirect(`/potions/potion/${potionName}/`)
     } catch (error) {
         console.error(error)
