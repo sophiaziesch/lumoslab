@@ -14,10 +14,13 @@ window.addEventListener("load", () => {
 		ingredients.appendChild(newInput)
 		//also creating its own "remove ingredient" button, inside the div
 		const newRemoveBtn = document.createElement('button')
+		
 		newRemoveBtn.className = "remove_ingredient button"
 		newRemoveBtn.textContent = " X "
 		newRemoveBtn.type="button"
 		ingredients.appendChild(newRemoveBtn)
+		const newBr = document.createElement('br')
+		ingredients.appendChild(newBr)
 		
 		newRemoveBtn.addEventListener('click', (event)=>{
 			const inputToRemove = event.target.previousElementSibling;

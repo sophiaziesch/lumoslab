@@ -12,7 +12,7 @@
 			<label class="ingredients">Ingredients: <br>
 				<% if (potion.ingredients.length > 0) { %> 
 				<% potion.ingredients.forEach(ingredient => { %>
-				<input class="data-input" type="text" name="ingredients" value="<%- ingredient %>" /><button type="button remove-btn" class="remove_ingredient button"> X </button>
+				<input class="data-input" type="text" name="ingredients" value="<%- ingredient %>" /><button type="button remove-btn" class="remove_ingredient button"> X </button> <br>
 				<% }) %>
 				<% }else{ %>
 				<input class="data-input" type="text" name="ingredients" />
