@@ -233,19 +233,24 @@ label {
 	justify-content: center;
 	align-items: center;
 	text-align: center;
+	padding: 20px;
 }
 
 .potion-card img {
-	height: 350px;
-	width: 270px;
+	height: 330px;
+	width: 250px;
 	object-fit: cover;
 	border-radius: 50px;
-	margin-bottom: 50px;
+	margin-bottom: 30px;
 }
 
 .potion-card p {
 	font-size: 1rem;
 	line-height: 1.5rem;
+}
+
+.potion-text {
+	flex-grow: 2;
 }
 
 .link-button {
@@ -293,6 +298,10 @@ label {
 	align-items: center;
 	padding: 50px 0;
 	gap: 20px;
+}
+
+.profile-flex h2 {
+	margin-bottom: 0px;
 }
 
 .profile-flex h3 {
@@ -350,6 +359,14 @@ label {
 	height: 30px;
 }
 
+.profile-flex img {
+	margin-bottom: 0px;
+	padding-bottom: 0px;
+}
+
+.profile-flex .potions-flex h3 {
+	margin-top: 20px;
+}
 /* My Potions & Favourite Potions styling */
 .my-fav-potions {
 	padding: 50px 0;
