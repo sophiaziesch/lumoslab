@@ -1,10 +1,24 @@
-<h2>My potions</h2>
+	<main>
+		<h2>My potions</h2>
 
-<ul>
-  <% myPotions.forEach(potion => { %>
-
-  <!-- the potion name should be a link to the potion page so you can either update or delete -->
-  <li><a href="/potions/potion/<%- potion.name  %>"><%- potion.name %></a></li>
-  <li><img src="<%- potion.img_url  %>" alt="" style="height: 200px" /></li>
-  <% }) %>
-</ul>
+		<section class="potions-flex">
+			<% myPotions.forEach(potion=> { %>
+			<div class="potion-card">
+				<% if (potion.img_url !== null && potion.img_url !== undefined) { %>
+				<img src="<%- potion.img_url  %>" alt="potion image">
+				<% } %>
+				<% if (potion.img_url == null) { %>
+				<img src="/images/default_pot.png" alt="potion image">
+				<% } %>
+				<h3><%- potion.name  %></h3>
+				<% if (potion.difficulty !== null && potion.difficulty !== undefined) { %>
+				<p><strong>Difficulty:</strong> <%- potion.difficulty %></p>
+				<% } %>
+				<% if (potion.effects !== null && potion.effects !== undefined) { %>
+				<p><strong>Effects:</strong> <%- potion.effects %></p>
+				<% } %>
+				<a class="link-button" href="/potions/potion/<%- potion.name  %>">Read more</a>
+			</div>
+			<% }) %>
+		</section>
+	</main>

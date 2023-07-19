@@ -37,7 +37,7 @@
 	<section class="potions-flex">
 		<% user.favorites.forEach(potion=> { %>
 		<div class="potion-card">
-			<% if (potion.img_url !== null) { %>
+			<% if (potion.img_url !== null && potion.img_url !== undefined ) { %>
 			<img src="<%- potion.img_url  %>" alt="potion image">
 			<% } %>
 			<% if (potion.img_url == null) { %>
