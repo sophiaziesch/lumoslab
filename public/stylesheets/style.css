@@ -142,7 +142,8 @@ label {
 	display: none;
 	position: absolute;
 	background-color: #492446;
-	border-radius: 10px;
+	border-radius: 0 0 10px 10px;
+	border: solid white 1px;
 	width: 10rem;
 }
 
@@ -349,10 +350,11 @@ label {
 	height: 30px;
 }
 
-/* My potions styling */
-.my-potions-flex {
-	display: flex;
-	flex-direction: column;
-	gap: 20px;
-	padding: 50px;
+/* My Potions & Favourite Potions styling */
+.my-fav-potions {
+	padding: 50px 0;
+}
+
+.my-fav-potions h2 {
+	margin-bottom: 50px;
 }
