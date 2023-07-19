@@ -1,39 +1,50 @@
-<h2>Update <%- potion.name %></h2>
+<main class="create-flex">
+	<h2>Update <%- potion.name %></h2>
 
-<form
-  action="/potions/potion/<%- potion.name %>/update"
-  method="POST"
-  enctype="multipart/form-data"
-  style="display: flex; flex-direction: column; align-items: flex-start"
->
-  <label
-    >Name:
-    <input type="text" name="name" value="<%- potion.name %>" required />
-  </label>
-  <% if (typeof errorMessage !== 'undefined') { %>
-    <p style="color: red"><%= errorMessage %></p>
-    <% } %>
-  <label
-    >Ingredients:
-    <!-- If there are ingredients -->
-    <% if (potion.ingredients.length > 0) { %> <%
+	<form action="/potions/potion/<%- potion.name %>/update" method="POST" enctype="multipart/form-data" style="display: flex; flex-direction: column; align-items: flex-start">
+		<section class="create-form-flex">
+			<label>Name: <br>
+				<input class="data-input" type="text" name="name" value="<%- potion.name %>" required />
+			</label>
+			<% if (typeof errorMessage !== 'undefined') { %>
+			<p style="color: red"><%= errorMessage %></p>
+			<% } %>
+			<label>Ingredients: <br>
+				<!-- If there are ingredients -->
+				<% if (potion.ingredients.length > 0) { %> <%
     potion.ingredients.forEach(ingredient => { %>
-    <input type="text" name="ingredients" value="<%- ingredient %>" />
-    <% }) %>
-    <!-- If there's no ingredient, shows an empty input, 1 input = 1 ingredient -->
-    <% }else{ %>
-    <input type="text" name="ingredients" />
-    <%} %>
-  </label>
+				<input class="data-input" type="text" name="ingredients" value="<%- ingredient %>" />
+				<% }) %>
+				<% }else{ %>
+				<input class="data-input" type="text" name="ingredients" />
+				<%} %>
+			</label>
+			<label>Difficulty: <br>
+				<input class="data-input" type="text" name="difficulty" />
+			</label>
 
-  <!-- TODO make the others label for difficulty, characteristics, time, effects, sideEffects -->
+			<label>Characteristics: <br>
+				<input class="data-input" type="text" name="characteristics" />
+			</label>
 
-  <!-- IMAGE LABEL, DONT DELETE -->
-  <label
-    >Image:
-    <input type="file" name="img_url" accept="image/png, image/jpg" />
-  </label>
+			<label>Time: <br>
+				<input class="data-input" type="number" name="time">
+			</label>
 
-  <button type="submit">Update Potion</button>
-</form>
+			<label>Effects: <br>
+				<input class="data-input" type="text" name="effects" />
+			</label>
 
+			<label>Side Effects: <br>
+				<input class="data-input" type="text" name="sideEffects" />
+			</label>
+
+			<!-- IMAGE LABEL, DONT DELETE -->
+			<label>Image: <br>
+				<input class="file-upload" type="file" name="img_url" accept="image/png, image/jpg" />
+			</label>
+
+			<button class="button" type="submit">Update Potion</button>
+		</section>
+	</form>
+</main>
