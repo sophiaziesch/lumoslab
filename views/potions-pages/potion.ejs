@@ -63,6 +63,9 @@
 	<a href="/potions/potion/<%- potion.name %>/update"><button class="button">Update</button></a>
 	<a href="/potions/potion/<%- potion.name %>/delete"><button class="button">Delete</button></a>
 	<% } %>
+	<% if (user && user.username) { %>
+		<a href="/potions/potion/<%- potion.name %>/favorite"><button class="button">Add to Favourites</button></a>
+		<% } %>
 </main>
 
 <div class="space"></div>

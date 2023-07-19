@@ -184,6 +184,7 @@ router.get('/my-favorites', isLoggedIn, async (req, res) => {
     loggedIn = true
     const currentUsername = req.session.user.username
     try {
+        
         const myFavorites = await User.findOne({ username: currentUsername }).populate("favorites")
         res.render('potions-pages/myFavorites', { myFavorites: myFavorites.potions, loggedIn })
     } catch (error) {
@@ -191,5 +192,20 @@ router.get('/my-favorites', isLoggedIn, async (req, res) => {
     }
 })
 
+//GET added a potion to "Favorite" user's inventory
+router.get("/potion/:nameOfPotion/favorite", isLoggedIn, async(req, res)=>{
+    const potionName = req.params.nameOfPotion
+    const currentUsername = req.session.user.username
+    try {
+        const findPotion = await Potion.findOne({name : potionName})
+        const findUser = await User.findOne({username : currentUsername})
+        findUser.favorites.push(findPotion)
+        await findUser.save()
+        console.log(findUser.favorites);
+        res.redirect(`/potions/potion/${potionName}/`)
+    } catch (error) {
+        console.error(error)
+    }
+})
 
 module.exports = router;

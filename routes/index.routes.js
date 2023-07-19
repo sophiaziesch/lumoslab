@@ -18,9 +18,17 @@ router.get("/", (req, res, next) => {
   res.render("index", { user: req.session.user, loggedIn });
 });
 
-router.get('/profile', isLoggedIn, (req, res) => {
+router.get('/profile', isLoggedIn, async (req, res) => {
   loggedIn = true
-  res.render("profile", { user: req.session.user, loggedIn })
+  const currentUsername = req.session.user.username
+  console.log(currentUsername);
+  try {
+    const currentUser = await User.findOne({username : currentUsername}).populate("potions", "favorites")
+    res.render("profile", { user: currentUser, loggedIn })
+  } catch (error) {
+    console.error(error)
+  }
+
 })
 
 //GET update user info page
@@ -59,15 +67,15 @@ router.post('/profile/update', isLoggedIn, uploader.single("img_url"), async (re
           //encrypting the newpassword and asign it to a new property matching our data
           newInfos.passwordHash = bcrypt.hashSync(newPassword, salt)
         } else {
-          res.render('profile-update', { wrongNewPassword: "The new password and the confirmation doesn't match, try again" , loggedIn })
+          res.render('profile-update', { wrongNewPassword: "The new password and the confirmation doesn't match, try again", loggedIn })
         }
       } else {
-        res.render('profile-update', { wrongPassword: "Wrong Password" , loggedIn })
+        res.render('profile-update', { wrongPassword: "Wrong Password", loggedIn })
       }
     }
 
     //If an image is uplaoded
-    if(req.file){
+    if (req.file) {
       //then we create a new property with the url of the img on newInfos
       newInfos.img_url = req.file.path
     }
@@ -85,8 +93,6 @@ router.get("/logout", isLoggedIn, (req, res) => {
   req.session.destroy()
   res.redirect("/")
 })
-
-//TODO Search route
 
 
 module.exports = router;
