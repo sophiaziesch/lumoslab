@@ -23,7 +23,7 @@ router.get('/profile', isLoggedIn, async (req, res) => {
   const currentUsername = req.session.user.username
   console.log(currentUsername);
   try {
-    const currentUser = await User.findOne({username : currentUsername}).populate("potions", "favorites")
+    const currentUser = await User.findOne({username : currentUsername}).populate("potions").populate("favorites")
     res.render("profile", { user: currentUser, loggedIn })
   } catch (error) {
     console.error(error)
