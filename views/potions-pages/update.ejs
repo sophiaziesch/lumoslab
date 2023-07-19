@@ -9,16 +9,16 @@
 			<% if (typeof errorMessage !== 'undefined') { %>
 			<p style="color: red"><%= errorMessage %></p>
 			<% } %>
-			<label class="ingredients">Ingredients: <br><button type="button" class="add_ingredient button"> + Add ingredient</button><br>
-				<!-- If there are ingredients -->
-				<% if (potion.ingredients.length > 0) { %> <%
-    potion.ingredients.forEach(ingredient => { %>
-				<input class="data-input" type="text" name="ingredients" value="<%- ingredient %>" />
+			<label class="ingredients">Ingredients: <br>
+				<% if (potion.ingredients.length > 0) { %> 
+				<% potion.ingredients.forEach(ingredient => { %>
+				<input class="data-input" type="text" name="ingredients" value="<%- ingredient %>" /><button type="button remove-btn" class="remove_ingredient button"> X </button>
 				<% }) %>
 				<% }else{ %>
 				<input class="data-input" type="text" name="ingredients" />
 				<%} %>
 			</label>
+			<button type="button" class="add_ingredient button"> + Add ingredient</button>
 			<label>Difficulty: <br>
 				<input class="data-input" type="text" name="difficulty" value="<%- potion.difficulty %>"/>
 			</label>
