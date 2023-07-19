@@ -10,13 +10,15 @@
 				<% if (potion.img_url == null) { %>
 				<img src="/images/default_pot.png" alt="potion image">
 				<% } %>
-				<h3><%- potion.name  %></h3>
-				<% if (potion.difficulty !== null && potion.difficulty !== undefined) { %>
-				<p><strong>Difficulty:</strong> <%- potion.difficulty %></p>
-				<% } %>
-				<% if (potion.effects !== null && potion.effects !== undefined) { %>
-				<p><strong>Effects:</strong> <%- potion.effects %></p>
-				<% } %>
+				<div class="potion-text">
+					<h3><%- potion.name  %></h3>
+					<% if (potion.difficulty !== null && potion.difficulty !== undefined) { %>
+					<p><strong>Difficulty:</strong> <%- potion.difficulty %></p>
+					<% } %>
+					<% if (potion.effects !== null && potion.effects !== undefined) { %>
+					<p><strong>Effects:</strong> <%- potion.effects %></p>
+					<% } %>
+				</div>
 				<a class="link-button" href="/potions/potion/<%- potion.name  %>">Read more</a>
 			</div>
 			<% }) %>
