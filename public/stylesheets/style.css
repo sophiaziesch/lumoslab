@@ -375,3 +375,7 @@ label {
 .my-fav-potions h2 {
 	margin-bottom: 50px;
 }
+
+.remove_ingredient{
+	width: 50px;
+}
