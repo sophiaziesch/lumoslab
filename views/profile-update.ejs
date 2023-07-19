@@ -1,31 +1,29 @@
-<h2>Update your infos</h2>
+<main class="create-flex">
+	<h2>Update your infos</h2>
 
-<form action="" method="POST" enctype="multipart/form-data">
-  <label
-    >Password :
-    <input type="password" name="password" />
-  </label>
-  <label
-    >New Password:
-    <input type="password" name="newPassword" />
-  </label>
-  <label
-    >Confirm New Password:
-    <input type="password" name="confirmedNewPassword" />
-  </label>
+	<form class="create-form-flex" action="" method="POST" enctype="multipart/form-data">
+		<label>Password: <br>
+			<input class="data-input" type="password" name="password" />
+		</label>
+		<label>New Password: <br>
+			<input class="data-input" type="password" name="newPassword" />
+		</label>
+		<label>Confirm New Password: <br>
+			<input class="data-input" type="password" name="confirmedNewPassword" />
+		</label>
 
-  <label
-    >Image:
-    <input type="file" name="img_url" accept="image/png, image/jpg" />
-  </label>
+		<label>Image: <br>
+			<input type="file" name="img_url" accept="image/png, image/jpg" />
+		</label>
 
-  <button type="submit">Update</button>
-</form>
+		<button class="button" type="submit">Update</button>
+	</form>
 
-<% if (typeof wrongPassword !== 'undefined') { %>
-  <p style="color: red"><%= wrongPassword %></p>
-  <% } %>
+	<% if (typeof wrongPassword !== 'undefined') { %>
+	<p style="color: red"><%= wrongPassword %></p>
+	<% } %>
 
-  <% if (typeof wrongNewPassword !== 'undefined') { %>
-    <p style="color: red"><%= wrongNewPassword %></p>
-    <% } %>
+	<% if (typeof wrongNewPassword !== 'undefined') { %>
+	<p style="color: red"><%= wrongNewPassword %></p>
+	<% } %>
+</main>

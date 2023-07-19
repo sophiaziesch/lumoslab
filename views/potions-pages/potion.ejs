@@ -23,7 +23,7 @@
 		<img src="/images/default_pot.png" alt="potion image">
 		<% } %>
 		<div class="potion-flex-side">
-			<% if (potion.ingredients !== null && potion.ingredients !== undefined && potion.ingredients !== 0) { %>
+			<% if (potion.ingredients !== null && potion.ingredients !== undefined && potion.ingredients.length >= 1 ) { %>
 			<h3>Ingredients:</h3>
 			<ul>
 				<% potion.ingredients.forEach(ingredient => { %>
