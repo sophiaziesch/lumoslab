@@ -33,7 +33,7 @@
 			<h3>Time:</h3>
 			<p><%- potion.time %></p>
 			<% } %>
-			
+
 		</div>
 	</div>
 	<% if (potion.characteristics !== null) { %>
@@ -50,18 +50,19 @@
 	<% } %>
 
 	<!-- /!\ Shows the UPDATE and DELETE button ONLY if the user is the inventor ! keep this part, juste style it -->
-	<% if ( user && user.username === potion.createdBy) { %>
-	<a href="/potions/potion/<%- potion.name %>/update"><button class="button">Update</button></a>
-	<a href="/potions/potion/<%- potion.name %>/delete"><button class="button">Delete</button></a>
-	<% } %>
-	<% if (user && user.username) { %>
-	<% if(isPotionFavorite){%>
-	<a href="/potions/potion/<%- potion.name %>/delete-favorite"><button class="button">Remove from Favourites</button></a>
-	<% } else{ %>
-	<a href="/potions/potion/<%- potion.name %>/favorite"><button class="button">Add to Favourites</button></a>
-	<%}  %>
+	<div class="buttons-flex"><% if ( user && user.username === potion.createdBy) { %>
+		<a href="/potions/potion/<%- potion.name %>/update"><button class="button">Update</button></a>
+		<a href="/potions/potion/<%- potion.name %>/delete"><button class="button">Delete</button></a>
+		<% } %>
+		<% if (user && user.username) { %>
+		<% if(isPotionFavorite){%>
+		<a href="/potions/potion/<%- potion.name %>/delete-favorite"><button class="button">Remove from Favourites</button></a>
+		<% } else{ %>
+		<a href="/potions/potion/<%- potion.name %>/favorite"><button class="button">Add to Favourites</button></a>
+		<%}  %>
 
-	<% } %>
+		<% } %>
+	</div>
 </main>
 
 <div class="space"></div>
