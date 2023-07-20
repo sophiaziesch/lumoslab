@@ -61,13 +61,11 @@ router.post('/login', async (req, res) => {
                 delete loggedUser.passwordHash
                 //creating a new property USER in my req.session 
                 req.session.user = loggedUser
-                console.log(req.session);
                 res.redirect('/')
             }
             res.render("auth/login", { username: currentUser.username, errorMessage, loggedIn })
         }
         else {
-            console.log("Wrong email or password");
             res.render("auth/login", { username: currentUser.username, errorMessage, loggedIn })
         }
     } catch (error) {

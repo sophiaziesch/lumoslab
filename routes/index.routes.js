@@ -21,14 +21,12 @@ router.get("/", (req, res, next) => {
 router.get('/profile', isLoggedIn, async (req, res) => {
   loggedIn = true
   const currentUsername = req.session.user.username
-  console.log(currentUsername);
   try {
     const currentUser = await User.findOne({username : currentUsername}).populate("potions").populate("favorites")
     res.render("profile", { user: currentUser, loggedIn })
   } catch (error) {
     console.error(error)
   }
-
 })
 
 //GET update user info page
@@ -93,6 +91,5 @@ router.get("/logout", isLoggedIn, (req, res) => {
   req.session.destroy()
   res.redirect("/")
 })
-
 
 module.exports = router;

@@ -45,7 +45,6 @@ router.post("/", async (req, res) => {
     const potionNameSearch = uppercaseFirstChar(req.body.searchPotions)
     try {
         const searchResults = await Potion.find({ name: potionNameSearch })
-        console.log(searchResults);
         res.render("potions-pages/allPotions", { allPotions: searchResults, loggedIn })
     } catch (error) {
         console.error(error)
@@ -151,7 +150,6 @@ router.get("/potion/:nameOfPotion/update", isLoggedIn, async (req, res) => {
 //POST updating the current potion
 router.post("/potion/:nameOfPotion/update", isLoggedIn, uploader.single("img_url"), async (req, res) => {
     const potionName = req.params.nameOfPotion
-
     let currentPotionUpdate
     const newName = uppercaseFirstChar(req.body.name)
     if (req.file) {
@@ -162,7 +160,6 @@ router.post("/potion/:nameOfPotion/update", isLoggedIn, uploader.single("img_url
     }
     try {
         const currentPotion = await Potion.findOne({ name: potionName })
-
         //Trying to find the new potion name already exist in DB
         const doesNewNameExist = await Potion.findOne({ name: currentPotionUpdate.name })
         if(doesNewNameExist){
@@ -172,7 +169,6 @@ router.post("/potion/:nameOfPotion/update", isLoggedIn, uploader.single("img_url
             //if it's a different id, that means the actual name exist on another potion, send error message in that case
             if (potionId !== newPotionId) {
                 //Render the UPDATE page with error message
-                console.log("name already used", currentPotion.name );
                 res.render("potions-pages/update", {potion: currentPotion, loggedIn, errorMessage: "This potion name already exist" })
             }
         }
@@ -188,6 +184,7 @@ router.post("/potion/:nameOfPotion/update", isLoggedIn, uploader.single("img_url
 
 //GET Delete my potion
 router.get("/potion/:nameOfPotion/delete", isLoggedIn, async (req, res) => {
+    loggedIn = true
     const potionName = req.params.nameOfPotion
     try {
         await Potion.findOneAndDelete({ name: potionName })
