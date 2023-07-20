@@ -86,6 +86,7 @@ router.post('/create', uploader.single("img_url"), async (req, res) => {
     let aPotion
     const currentCreator = req.session.user.username
     const potionName = uppercaseFirstChar(req.body.name)
+    
     //checking if user inserting an image, if not, the default one will be display
     if (req.file) {
         //creating a copy of the request body and assign the image path to the img_url property to match DB
