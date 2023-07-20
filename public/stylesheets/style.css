@@ -380,6 +380,9 @@ label {
 	gap: 20px;
 }
 
+.profile-flex .potions-flex h3 {
+	margin-top: 20px;
+}
 /* My Potions & Favourite Potions styling */
 .my-fav-potions {
 	padding: 50px 0;
