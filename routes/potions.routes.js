@@ -78,6 +78,7 @@ router.get('/potion/:potionName', async (req, res) => {
 
 //GET create page only if you're logged in
 router.get('/create', isLoggedIn, (req, res) => {
+    loggedIn = true
     res.render("potions-pages/create", { loggedIn })
 })
 
