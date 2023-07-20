@@ -367,6 +367,12 @@ label {
 .profile-flex .potions-flex h3 {
 	margin-top: 20px;
 }
+
+.user-img {
+	height: 200px;
+	border-radius: 100%;
+}
+
 /* My Potions & Favourite Potions styling */
 .my-fav-potions {
 	padding: 50px 0;
@@ -376,6 +382,6 @@ label {
 	margin-bottom: 50px;
 }
 
-.remove_ingredient{
+.remove_ingredient {
 	width: 50px;
 }
