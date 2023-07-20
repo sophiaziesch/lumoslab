@@ -91,12 +91,22 @@ router.post('/create', uploader.single("img_url"), async (req, res) => {
         //creating a copy of the request body and assign the image path to the img_url property to match DB
         aPotion = { ...req.body, name : potionName, img_url: req.file.path, createdBy: currentCreator }
     } else {
-        aPotion = { ...req.body, name : potionName, createdBy: currentCreator }
+        //put a random potion image if no file is uplaoded
+        const potionIMG1 = "/images/default_pot.png"
+        const potionIMG2 = "/images/default_pot2.png"
+        const potionIMG3 = "/images/default_pot3.png"
+        const randomIMG = Math.random() * 3
+        if(randomIMG <= 1){
+            aPotion = { ...req.body, name : potionName, img_url: potionIMG1, createdBy: currentCreator }
+        }else if(randomIMG > 1 && randomIMG <= 2){
+            aPotion = { ...req.body, name : potionName, img_url: potionIMG2, createdBy: currentCreator }
+        }else if(randomIMG > 2 && randomIMG <= 3){
+            aPotion = { ...req.body, name : potionName, img_url: potionIMG3, createdBy: currentCreator }
+        }
     }
     try {
         //If the name already exist in the databse
         const doesNameExist = await Potion.findOne({ name: aPotion.name })
-        console.log(doesNameExist);
         if (doesNameExist) {
             //then render the create page with error message
             res.render("potions-pages/create", { loggedIn, errorMessage: "This potion name already exist" })

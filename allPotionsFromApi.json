@@ -57,7 +57,7 @@
   "effects": null,
   "sideEffects": null,
   "createdBy": null,
-  "img_url": null
+  "img_url": "/images/default_pot.png"
   },
   {
   "name": "Antidote to Common Poisons",
@@ -231,7 +231,7 @@
   "effects": "Healed bruises in an hour",
   "sideEffects": null,
   "createdBy": "Fred and George Weasley",
-  "img_url": null
+  "img_url": "/images/default_pot2.png"
   },
   {
   "name": "Bulgeye Potion",
@@ -253,7 +253,7 @@
   "effects": null,
   "sideEffects": null,
   "createdBy": null,
-  "img_url": null
+  "img_url": "/images/default_pot2.png"
   },
   {
   "name": "Bundimun Secretion",
@@ -275,7 +275,7 @@
   "effects": "Healed burns",
   "sideEffects": null,
   "createdBy": null,
-  "img_url": null
+  "img_url": "/images/default_pot3.png"
   },
   {
   "name": "Burning Bitterroot Balm",
@@ -341,7 +341,7 @@
   "effects": "Confusion",
   "sideEffects": null,
   "createdBy": null,
-  "img_url": null
+  "img_url": "/images/default_pot3.png"
   },
   {
   "name": "Cough Potion",
@@ -443,7 +443,7 @@
   "effects": "Develops moving photographs",
   "sideEffects": null,
   "createdBy": null,
-  "img_url": null
+  "img_url": "/images/default_pot.png"
   },
   {
   "name": "Dizziness Draught",
@@ -538,7 +538,7 @@
   "effects": "Cures sick dragons",
   "sideEffects": null,
   "createdBy": null,
-  "img_url": null
+  "img_url": "/images/default_pot2.png"
   },
   {
   "name": "Draught of Living Death",
@@ -597,7 +597,7 @@
   "effects": "Healed wounds left by negative thoughts",
   "sideEffects": null,
   "createdBy": "Dr Ubbly (presumably)",
-  "img_url": null
+  "img_url": "/images/default_pot2.png"
   },
   {
   "name": "Elixir of Life",
@@ -722,7 +722,7 @@
   "effects": "Supposedly protect the drinker from the effects of dark magic (likely useless)",
   "sideEffects": "Likely harmful side effects",
   "createdBy": null,
-  "img_url": null
+  "img_url": "/images/default_pot.png"
   },
   {
   "name": "Fatiguing Fusion",
@@ -947,7 +947,7 @@
   "effects": "Revealed the worst traits of a person to the drinker",
   "sideEffects": null,
   "createdBy": null,
-  "img_url": null
+  "img_url": "/images/default_pot.png"
   },
   {
   "name": "Healing Potion",
@@ -1076,7 +1076,7 @@
   "effects": "Laxative",
   "sideEffects": null,
   "createdBy": null,
-  "img_url": null
+  "img_url": "/images/default_pot3.png"
   },
   {
   "name": "Love potion",
@@ -1256,7 +1256,7 @@
   "effects": "Killed Nargles",
   "sideEffects": null,
   "createdBy": null,
-  "img_url": null
+  "img_url": "/images/default_pot3.png"
   }
   ]
   
