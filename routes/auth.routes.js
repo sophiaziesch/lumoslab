@@ -33,7 +33,7 @@ router.post("/signup", async (req, res) => {
         const newUser = await User.create(payload)
         delete payload.passwordHash
         req.session.user = payload
-        res.redirect('/')
+        res.redirect('/profile')
     } catch (error) {
         console.log(error);
     }
